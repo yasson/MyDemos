@@ -59,6 +59,11 @@ public class MyArcView extends BaseView{
         array.recycle();
     }
 
+    @Override
+    protected void init(Context context) {
+
+    }
+
     private void init() {
         mPaint=new Paint();
         mPaint.setStyle(Paint.Style.STROKE);

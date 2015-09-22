@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.ys.ts.activity.CleanRoateAnimActivity;
 import com.ys.ts.activity.MyCostomActivity;
 import com.ys.ts.activity.MyOptActivity;
 import com.ys.ts.activity.SecondActivity;
@@ -21,7 +22,7 @@ public class MyActivity extends ListActivity implements View.OnClickListener{
     String tag="yangsen";
     private CostomView1 view1;
     Thread viewT;
-    public static String[] titles={"自定义圆角图片","test context","my arc view","test opt"};
+    public static String[] titles={"自定义圆角图片","test context","my arc view","test opt","垃圾清理顶部选择view"};
 
     /**
      * Called when the activity is first created.
@@ -48,6 +49,9 @@ public class MyActivity extends ListActivity implements View.OnClickListener{
                 break;
             case 3:
                 openActivity(MyOptActivity.class);
+            case 4:
+                openActivity(CleanRoateAnimActivity.class);
+
             default:
                 break;
         }

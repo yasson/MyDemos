@@ -1,8 +1,8 @@
 package com.ys;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.view.WindowManager;
 
 /**工具类
  * Created by ys on 2015/3/11.
@@ -10,16 +10,17 @@ import android.util.DisplayMetrics;
 public class ViewHelper {
 
     public static int getScreenWidth(Context context){
-        return getDisplayMetrics((Activity) context).widthPixels;
+        return getDisplayMetrics(context).widthPixels;
     }
 
     public static int getScreenHeight(Context context){
-        return getDisplayMetrics((Activity) context).heightPixels;
+        return getDisplayMetrics( context).heightPixels;
     }
 
-    private static DisplayMetrics getDisplayMetrics(Activity context) {
+    private static DisplayMetrics getDisplayMetrics(Context context) {
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        context.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics;
     }
 }

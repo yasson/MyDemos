@@ -7,6 +7,7 @@ import android.view.View;
 import com.ys.ViewHelper;
 
 /**
+ * base custom view
  * Created by ys on 2015/3/11.
  */
 public abstract class BaseView extends View{
@@ -26,17 +27,19 @@ public abstract class BaseView extends View{
 
         sw= ViewHelper.getScreenWidth(context);
         sh= ViewHelper.getScreenHeight(context);
+        init(context);
         obtainStyledAttributes(attrs);
     }
 
 
 
     protected abstract void obtainStyledAttributes(AttributeSet attrs);
+    protected abstract void init(Context context);
 
     /**
      * dp 2 px
      *
-     * @param dpVal
+     * @param dpVal dp
      */
     protected int dp2px(int dpVal)
     {
@@ -47,8 +50,8 @@ public abstract class BaseView extends View{
     /**
      * sp 2 px
      *
-     * @param spVal
-     * @return
+     * @param spVal sp
+     * @return px
      */
     protected int sp2px(int spVal)
     {

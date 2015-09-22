@@ -11,6 +11,7 @@ import android.os.Debug;
 import android.os.Parcel;
 import android.provider.Browser;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -18,6 +19,7 @@ import android.text.Spanned;
 import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -46,6 +48,7 @@ public class MyCostomActivity extends BaseActivity{
         textView.setAutoLinkMask(Linkify.ALL);
         String url=getResources().getString(R.string.copyright);
         textView.setText(getClickableHtml(url1));
+        getMyPhoneNum();
 //        Spannable spannable= (Spannable) textView.getText();
 //        ClickableSpan[] links = (spannable.getSpans(textView.getSelectionStart(),
 //                textView.getSelectionEnd(), URLSpan.class));
@@ -90,6 +93,12 @@ public class MyCostomActivity extends BaseActivity{
             }
         });
     }
+
+    private void getMyPhoneNum() {
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        Log.i("mydemos","num ------"+telephonyManager.getLine1Number());
+    }
+
     public class MyURLSpan extends URLSpan{
 
         public MyURLSpan(String url) {

@@ -1,6 +1,7 @@
 package com.ys.ts.activity;
 
 import android.app.Notification;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -65,25 +66,28 @@ public class SecondActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn2:
-                testNoti();
+//                testNoti();
                 break;
         }
     }
 
-    private void testNoti() {
-        try {
-            Notification ntf = new Notification();
-            ntf.setLatestEventInfo(getApplicationContext(), "titleColor",
-                                   "textColor", null);
-            LinearLayout group = new LinearLayout(getApplicationContext());
-            ViewGroup event = (ViewGroup) ntf.contentView.apply(
-                    getApplicationContext(), group);
-            recurseGroup(event);
-            group.removeAllViews();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    private void testNoti() {
+//        try {
+//            if (16 > Build.VERSION.SDK_INT){
+//                Notification ntf = new Notification();
+//                ntf.setLatestEventInfo(getApplicationContext(), "titleColor",
+//                                       "textColor", null);
+//            }
+//
+//            LinearLayout group = new LinearLayout(getApplicationContext());
+//            ViewGroup event = (ViewGroup) ntf.contentView.apply(
+//                    getApplicationContext(), group);
+//            recurseGroup(event);
+//            group.removeAllViews();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
     private boolean recurseGroup(ViewGroup gp) {
         final int count = gp.getChildCount();
         for (int i = 0; i < count; ++i) {

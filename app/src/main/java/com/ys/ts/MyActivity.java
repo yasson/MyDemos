@@ -16,13 +16,14 @@ import com.ys.ts.activity.MyCostomActivity;
 import com.ys.ts.activity.MyOptActivity;
 import com.ys.ts.activity.SecondActivity;
 import com.ys.ts.arcview.MyArcActivity;
+import com.ys.ts.float_dialog.DialogKeyEventTest;
 import com.ys.view.CostomView1;
 
 public class MyActivity extends ListActivity implements View.OnClickListener{
     String tag="yangsen";
     private CostomView1 view1;
     Thread viewT;
-    public static String[] titles={"自定义圆角图片","test context","my arc view","test opt","垃圾清理顶部选择view"};
+    public static String[] titles={"自定义圆角图片","test context","my arc view","test opt","垃圾清理顶部选择view","dialog key事件拦截"};
 
     /**
      * Called when the activity is first created.
@@ -49,8 +50,13 @@ public class MyActivity extends ListActivity implements View.OnClickListener{
                 break;
             case 3:
                 openActivity(MyOptActivity.class);
+                break;
             case 4:
                 openActivity(CleanRoateAnimActivity.class);
+                break;
+            case 5:
+                openActivity(DialogKeyEventTest.class);
+                break;
 
             default:
                 break;

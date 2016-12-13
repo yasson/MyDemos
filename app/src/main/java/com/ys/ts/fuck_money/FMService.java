@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.text.TextUtils;
 import android.util.Log;
@@ -40,49 +41,62 @@ public class FMService extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        if (event.getPackageName().equals("com.samsung.android.packageinstaller")){
-            AccessibilityNodeInfo infos = getRootInActiveWindow();
-            checkPerInfos(infos);
-        }else if (event.getPackageName().equals("com.samsung.android.MtpApplication")){
-            checkMtpAlert(getRootInActiveWindow());
+
+        switch (event.getPackageName().toString()){
+            case "com.samsung.android.packageinstaller":
+                checkPerInfos(getRootInActiveWindow());
+                break;
+            case "com.samsung.android.MtpApplication":
+                checkMtpAlert(getRootInActiveWindow());
+                break;
+            case "com.tencent.mm":
+                dealMM(event);
+                break;
+
         }
         L.d(event.toString());
-       switch (event.getEventType()){
-           case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED:
-               List<CharSequence> ts = event.getText();
-               boolean hasMoney = false;
-               for (CharSequence s : ts){
-                   if (TextUtils.isEmpty(s))
-                       continue;
-                   if (s.toString().contains("微信红包")){
-                       hasMoney = true;
-                       break;
-                   }
-               }
-               if (hasMoney){
-                   Notification nf = (Notification) event.getParcelableData();
-                   PendingIntent pi = nf.contentIntent;
-                   try {
-                       pi.send();
-                   } catch (PendingIntent.CanceledException e) {
-                       e.printStackTrace();
-                   }
-               }
-               break;
-           case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED:
-               String className = event.getClassName().toString();
-               if (className.equals("com.tencent.mm.ui.LauncherUI")) {
-                   //开始抢红包
-                   openPacket();
-               } else if (className.equals("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyReceiveUI")) {
-                   //开始打开红包
-                   getPacket();
-               }else if (className.equals("com.tencent.mm.ui.base.p")){
-                   getPacket();
-               }
-               break;
-       }
 
+    }
+
+    /**
+     * 处理微信问题
+     */
+    private void dealMM(AccessibilityEvent event) {
+        switch (event.getEventType()){
+            case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED:
+                List<CharSequence> ts = event.getText();
+                boolean hasMoney = false;
+                for (CharSequence s : ts){
+                    if (TextUtils.isEmpty(s))
+                        continue;
+                    if (s.toString().contains("微信红包")){
+                        hasMoney = true;
+                        break;
+                    }
+                }
+                if (hasMoney){
+                    Notification nf = (Notification) event.getParcelableData();
+                    PendingIntent pi = nf.contentIntent;
+                    try {
+                        pi.send();
+                    } catch (PendingIntent.CanceledException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED:
+                String className = event.getClassName().toString();
+                if (className.equals("com.tencent.mm.ui.LauncherUI")) {
+                    //开始抢红包
+                    openPacket();
+                } else if (className.equals("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyReceiveUI")) {
+                    //开始打开红包
+                    getPacket();
+                }else if (className.equals("com.tencent.mm.ui.base.p")){
+                    getPacket();
+                }
+                break;
+        }
     }
 
     private void checkPerInfos(AccessibilityNodeInfo nodeInfo) {
@@ -141,6 +155,7 @@ public class FMService extends AccessibilityService {
             return;
         final Rect rect = new Rect();
         nodeInfo.getBoundsInScreen(rect);
+
         try {
             Thread.sleep(300);
         } catch (InterruptedException e) {
@@ -174,15 +189,15 @@ public class FMService extends AccessibilityService {
     }
 
     public void showView(Rect rect){
-        WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
-        Paint p = new Paint();
-        p.setColor(Color.RED);
-        p.setStyle(Paint.Style.STROKE);
-        View v = new View(this);
-        Canvas canvas = new Canvas();
-        canvas.drawRect(rect,p);
-        v.draw(canvas);
-        wm.addView(v,new WindowManager.LayoutParams(WindowManager.LayoutParams.TYPE_SYSTEM_ERROR));
+        WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        CoverView c = new CoverView(this);
+        c.setRect(rect);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.format = PixelFormat.TRANSLUCENT;
+        lp.width = 600;
+        lp.height = 600;
+        lp.flags = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
+        windowManager.addView(c,lp);
     }
 
     /**

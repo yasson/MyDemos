@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:ys="http://schemas.android.com/apk/res/com.ys.ts"
+                xmlns:ys="http://schemas.android.com/apk/res-auto"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -13,4 +13,10 @@
             ys:interRadius="50dp"
             ys:linearWidth="2dp"
             ys:stokenWidth="40dp"/>
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"/>
+
 </RelativeLayout>

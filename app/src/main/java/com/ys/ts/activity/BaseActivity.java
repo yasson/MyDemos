@@ -17,16 +17,20 @@ public class BaseActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mSw= ViewHelper.getScreenWidth(this);
-        mSh= ViewHelper.getScreenHeight(this);
+        setContentView(getContentView(savedInstanceState));
         initView();
     }
 
-    protected void initView() {
-
+    protected int getContentView(Bundle savedInstanceState) {
+        return 0;
     }
 
-    protected View findView(int resId){
-        return findViewById(resId);
+    protected void initView() {
+        mSw= ViewHelper.getScreenWidth(this);
+        mSh= ViewHelper.getScreenHeight(this);
+    }
+
+    protected <T extends View> T findView(int resId){
+        return (T) findViewById(resId);
     }
 }

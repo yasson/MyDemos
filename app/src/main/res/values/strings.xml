@@ -2,5 +2,8 @@
 <resources>
     <string name="app_name">ts</string>
     <string name="copyright">\n官网:http://www.aqgj.cn\n微博/微信:安全管家\n客服邮箱:kefu@anguanjia.com\n客服QQ群:93473095,103520577\n\n\u00A92011 北京安管佳 版权所有</string>
+    <string name="accessibility_description">辅助服务抢红包</string>
+    <string name="accessibility_description_mtp_window">已连接的设备无法访问此设备上的数据。请重新连接 USB 数据线并重试。
 
+必须在 Mac OS X 设备上安装 Android File Transfer 或三星 S 换机助手。若要下载 Android File Transfer，请进入https://www.android.com/filetransfer，若要下载三星 S 换机助手，请进入https://www.samsung.com/smartswitch。</string>
 </resources>

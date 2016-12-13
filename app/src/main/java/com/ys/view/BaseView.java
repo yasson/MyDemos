@@ -1,6 +1,7 @@
 package com.ys.view;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -12,6 +13,8 @@ import com.ys.ViewHelper;
  */
 public abstract class BaseView extends View{
 
+
+    protected Paint paint;
     protected int sw=0;
     protected int sh=0;
     public BaseView(Context context) {

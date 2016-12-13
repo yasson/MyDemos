@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.ys.ts"
-        minSdkVersion 15
+        minSdkVersion 18
         targetSdkVersion 22
     }
 

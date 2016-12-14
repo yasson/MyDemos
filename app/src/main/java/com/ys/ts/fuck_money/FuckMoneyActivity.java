@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -17,6 +19,7 @@ import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.ys.core.AppInstance;
 import com.ys.ts.R;
 import com.ys.ts.activity.BaseActivity;
 
@@ -50,14 +53,6 @@ public class FuckMoneyActivity extends BaseActivity implements View.OnClickListe
         mContainer = findView(R.id.container);
         mBtnStart.setOnClickListener(this);
         mBtnStop.setOnClickListener(this);
-        WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
-        CoverView v = new CoverView(this);
-        v.setRect(new Rect(0,0,200,200));
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams(WindowManager.LayoutParams.TYPE_BASE_APPLICATION);
-        lp.width = v.getMeasuredWidth();
-        lp.height= v.getMeasuredHeight();
-        mContainer.addView(v,new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-//        wm.
     }
 
     @Override

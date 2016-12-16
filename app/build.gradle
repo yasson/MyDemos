@@ -18,7 +18,13 @@ android {
     }
 }
 
+println gradle.getGradleHomeDir()
+println gradle.getGradleUserHomeDir()
+println gradle.getGradleVersion()
+println gradle.parent
+
 dependencies {
     //noinspection GradleCompatible
     compile 'com.android.support:support-v4:24.0.0'
+    compile 'org.codehaus.groovy:groovy:2.4.7'
 }

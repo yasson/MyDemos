@@ -12,27 +12,24 @@ import com.ys.core.AppInstance;
  * Created by nufeng on 2016/12/13.
  */
 
-public class T extends Toast{
+public class T {
 
-    /**
-     * Construct an empty Toast object.  You must call {@link #setView} before you
-     * can call {@link #show}.
-     *
-     * @param context The context to use.  Usually your {@link Application}
-     *                or {@link Activity} object.
-     */
-    public T(Context context) {
-        super(context);
+    private static Toast mToast;
+
+    public static void init(){
+        mToast =  Toast.makeText(AppInstance.context(),"",Toast.LENGTH_SHORT);
     }
 
     public static void show(final String ms){
         if (Looper.myLooper()==Looper.getMainLooper()){
-            makeText(AppInstance.context(),ms,Toast.LENGTH_SHORT).show();
+            mToast.setText(ms);
+            mToast.show();
         }else{
             AppInstance.ofUIHandler().post(new Runnable() {
                 @Override
                 public void run() {
-                    makeText(AppInstance.context(),ms,Toast.LENGTH_SHORT).show();
+                    mToast.setText(ms);
+                    mToast.show();
                 }
             });
         }

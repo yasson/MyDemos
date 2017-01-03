@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.ListView;
 
 import com.ys.core.AppInstance;
 import com.ys.ts.R;
@@ -26,7 +27,7 @@ import java.util.List;
  */
 
 public class FMService extends AccessibilityService {
-
+//,com.samsung.android.packageinstaller,com.samsung.android.MtpApplication
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         L.i("onStartCommand");
@@ -41,10 +42,10 @@ public class FMService extends AccessibilityService {
 
         switch (event.getPackageName().toString()) {
             case "com.samsung.android.packageinstaller":
-                checkPerInfos(getRootInActiveWindow());
+//                checkPerInfos(getRootInActiveWindow());
                 break;
             case "com.samsung.android.MtpApplication":
-                checkMtpAlert(getRootInActiveWindow());
+//                checkMtpAlert(getRootInActiveWindow());
                 break;
             case "com.tencent.mm":
                 dealMM(event);
@@ -88,9 +89,9 @@ public class FMService extends AccessibilityService {
                     openPacket();
                 } else if (className.equals("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyReceiveUI")) {
                     //开始打开红包
-                    getPacket();
+//                    getPacket();
                 } else if (className.equals("com.tencent.mm.ui.base.p")) {
-                    getPacket();
+//                    getPacket();
                 }
                 break;
         }
@@ -151,6 +152,9 @@ public class FMService extends AccessibilityService {
     private void recycle(AccessibilityNodeInfo nodeInfo) {
         if (nodeInfo == null)
             return;
+        if (nodeInfo.getClassName().toString().equals(ListView.class.getSimpleName())){
+
+        }
         final Rect rect = new Rect();
         nodeInfo.getBoundsInScreen(rect);
 
@@ -168,12 +172,16 @@ public class FMService extends AccessibilityService {
         if (nodeInfo.getChildCount() == 0) {
             if (!TextUtils.isEmpty(nodeInfo.getText())) {
                 if ("领取红包".endsWith(nodeInfo.getText().toString())) {
-                    nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                    // TODO: 1/3/17
+//                    nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                    T.show("nodeInfo click");
                     AccessibilityNodeInfo parent = nodeInfo.getParent();
                     while (parent != null) {
 //                        if (parent.isCheckable()){
 //                        }
-                        parent.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                        T.show("parent click");
+                        // TODO: 1/3/17
+//                        parent.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                         parent = parent.getParent();
                     }
                 }

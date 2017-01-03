@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import com.ys.core.AppInstance;
 import com.ys.ts.R;
 import com.ys.ts.activity.BaseActivity;
+import com.ys.ts.fuck_money.api.FuckMoneyApi;
 
 import org.w3c.dom.Text;
 
@@ -98,6 +99,7 @@ public class FuckMoneyActivity extends BaseActivity implements View.OnClickListe
                 goSetService();
                 break;
             case R.id.btn2:
+                FuckMoneyApi.setApiGetIndex();
                 break;
         }
     }

@@ -27,4 +27,5 @@ dependencies {
     //noinspection GradleCompatible
     compile 'com.android.support:support-v4:24.0.0'
     compile 'org.codehaus.groovy:groovy:2.4.7'
+    compile 'com.squareup.okhttp3:okhttp:3.5.0'
 }

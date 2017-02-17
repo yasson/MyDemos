@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.ys.ViewHelper;
 import com.ys.ts.R;
+import com.ys.ts.utils.L;
 
 /**
  * Created by ys on 2015/2/28.
@@ -22,7 +23,7 @@ public class BaseActivity extends FragmentActivity {
     }
 
     protected int getContentView(Bundle savedInstanceState) {
-        return 0;
+        return R.layout.main;
     }
 
     protected void initView() {
@@ -32,5 +33,9 @@ public class BaseActivity extends FragmentActivity {
 
     protected <T extends View> T findView(int resId){
         return (T) findViewById(resId);
+    }
+    protected void print(Object s){
+//        System.out.print(s);
+        L.d(String.valueOf(s));
     }
 }

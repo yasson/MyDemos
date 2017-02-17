@@ -42,13 +42,13 @@ public class FMService extends AccessibilityService {
 
         switch (event.getPackageName().toString()) {
             case "com.samsung.android.packageinstaller":
-//                checkPerInfos(getRootInActiveWindow());
+                checkPerInfos(getRootInActiveWindow());
                 break;
             case "com.samsung.android.MtpApplication":
-//                checkMtpAlert(getRootInActiveWindow());
+                checkMtpAlert(getRootInActiveWindow());
                 break;
             case "com.tencent.mm":
-                dealMM(event);
+//                dealMM(event);
                 break;
 
         }

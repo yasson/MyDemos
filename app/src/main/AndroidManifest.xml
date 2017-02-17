@@ -41,6 +41,7 @@
         <activity android:name=".activity.CleanRoateAnimActivity"/>
         <activity android:name=".float_dialog.DialogKeyEventTest"/>
         <activity android:name=".fuck_money.FuckMoneyActivity"/>
+        <activity android:name=".TestAct"/>
 
         <service android:name=".TsService"/>
         <service android:name=".activity.CleanRoateAnimActivity$Se"/>

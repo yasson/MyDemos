@@ -1,10 +1,11 @@
 package com.ys.ts;
 
-import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * test
@@ -12,15 +13,152 @@ import java.util.Date;
  */
 public class Ts {
 
-    public static void main(String[] args){
-//        test1();
-//        test2();
-        test3();
+    interface A {
+        String a = "a";
+
+        void a();
     }
 
-    private  static void test3() {
+    interface B {
+        String b = "b";
+
+        void a();
+    }
+
+    interface C extends A, B {
+
+    }
+
+    static class D implements C {
+
+        @Override
+        public void a() {
+            StringBuilder sb = new StringBuilder();
+            sb.reverse();
+            char[] chars = b.toCharArray();
+            System.out.print(A.a);
+        }
+    }
+
+    static class E {
+    }
+
+    public static void main(String[] args) {
+//        test1();
+//        test2();
+//        test3();
+//        test4();
+//        test5();
+//        new D().a();
+//            tetst6();
+        testNo();
+//        testVolatile();
+    }
+
+    private static void testNo() {
+        new ReaderThread().start();
+        number = 42;
+        ready = true;
+    }
+
+    private static void testVolatile() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (a<10){
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    a++;
+                                    System.out.println("a"+a);
+                }
+            }
+        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (a<10){
+                    try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                    System.out.println("b"+a);
+                }
+            }
+        }).start();
+    }
+    private static boolean ready;
+    private static int number;
+    private static class ReaderThread extends Thread {
+        @Override
+        public void run() {
+            while(!ready) {
+                Thread.yield();
+            }
+            System.out.println(number);
+        }
+    }
+    static volatile int a;
+
+    private static void tetst6() {
+        String a = "abcde";
+        String as = a.substring(a.indexOf('c'));
+        System.out.print(as);
+    }
+
+
+    private static void test5() {
+        final Object lock = new Object();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int i = 0;
+                while (i < 6) {
+                    i++;
+                    synchronized (lock) {
+                        System.out.print("1\n");
+                        lock.notify();
+                        try {
+                            lock.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int i = 0;
+                while (i < 6) {
+                    i++;
+                    synchronized (lock) {
+                        System.out.print("2\n");
+                        lock.notify();
+                        try {
+                            lock.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }).start();
+    }
+
+    private static void test4() {
+        String a = (String) null;
+        System.out.print(a + "1");
+    }
+
+    private static void test3() {
         getNextHeartTime();
     }
+
     private static long getNextHeartTime() {
         Calendar scalendar = Calendar.getInstance();
         scalendar.setTimeInMillis(System.currentTimeMillis());
@@ -30,13 +168,13 @@ public class Ts {
             Date date = simpleDateFormat.parse(time);
             scalendar.setTime(date);
             scalendar.add(Calendar.HOUR_OF_DAY, 1);
-            System.out.print("time :"+simpleDateFormat.format(scalendar.getTimeInMillis()));
+            System.out.print("time :" + simpleDateFormat.format(scalendar.getTimeInMillis()));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         int h = scalendar.get(Calendar.HOUR_OF_DAY);
 
-        if ( h != 23) {
+        if (h != 23) {
             ++h;
         } else {
             int Max = 8;
@@ -54,15 +192,16 @@ public class Ts {
 
         return scalendar.getTimeInMillis();
     }
+
     private static void test2() {
-        Map<Integer,String> maps = new HashMap<>();
-        maps.put(1,"1");
-        maps.put(2,"2");
-        maps.put(3,"3");
+        Map<Integer, String> maps = new HashMap<>();
+        maps.put(1, "1");
+        maps.put(2, "2");
+        maps.put(3, "3");
         String a = maps.get(1);
-        a= "a";
+        a = "a";
         String b = maps.get(1);
-        System.out.print("b="+b);
+        System.out.print("b=" + b);
     }
 
     //    private static void test1() {

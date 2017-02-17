@@ -24,7 +24,7 @@ public class MyActivity extends ListActivity implements View.OnClickListener{
     String tag="yangsen";
     private CostomView1 view1;
     Thread viewT;
-    public static String[] titles={"自定义圆角图片","test context","my arc view","test opt","垃圾清理顶部选择view","dialog key事件拦截","抢红包插件"};
+    public static String[] titles={"test","自定义圆角图片","test context","my arc view","test opt","垃圾清理顶部选择view","dialog key事件拦截","抢红包插件"};
 
     /**
      * Called when the activity is first created.
@@ -41,24 +41,27 @@ public class MyActivity extends ListActivity implements View.OnClickListener{
         super.onListItemClick(l, v, position, id);
         switch (position){
             case 0:
-                openActivity(MyCostomActivity.class);
+                openActivity(TestAct.class);
                 break;
             case 1:
-                openActivity(SecondActivity.class);
+                openActivity(MyCostomActivity.class);
                 break;
             case 2:
-                openActivity(MyArcActivity.class);
+                openActivity(SecondActivity.class);
                 break;
             case 3:
-                openActivity(MyOptActivity.class);
+                openActivity(MyArcActivity.class);
                 break;
             case 4:
-                openActivity(CleanRoateAnimActivity.class);
+                openActivity(MyOptActivity.class);
                 break;
             case 5:
-                openActivity(DialogKeyEventTest.class);
+                openActivity(CleanRoateAnimActivity.class);
                 break;
             case 6:
+                openActivity(DialogKeyEventTest.class);
+                break;
+            case 7:
                 openActivity(FuckMoneyActivity.class);
                 break;
 

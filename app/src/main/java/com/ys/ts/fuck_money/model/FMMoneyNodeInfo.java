@@ -3,7 +3,6 @@ package com.ys.ts.fuck_money.model;
 import android.text.TextUtils;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ListView;
-
 /**
  * 红包节点信息
  * 用于判断红包是否有效

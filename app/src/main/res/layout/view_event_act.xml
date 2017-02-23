@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ys.ts.view_event_test.YeyeView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<com.ys.ts.view_event_test.FatherView
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    android:background="@color/yellow">
+    <com.ys.ts.view_event_test.MatherView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@color/purple">
+        <com.ys.ts.view_event_test.SonView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/red"/>
+        <com.ys.ts.view_event_test.Son2View
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/green"/>
+        <com.ys.ts.view_event_test.SisView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/blue"/>
+    </com.ys.ts.view_event_test.MatherView>
+
+</com.ys.ts.view_event_test.FatherView>
+
+
+
+
+</com.ys.ts.view_event_test.YeyeView>

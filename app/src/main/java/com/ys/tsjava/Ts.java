@@ -1,4 +1,4 @@
-package com.ys.ts;
+package com.ys.tsjava;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,8 +17,8 @@ public class Ts {
         String a = "a";
 
         void a();
-    }
 
+    }
     interface B {
         String b = "b";
 
@@ -30,7 +30,9 @@ public class Ts {
     }
 
     static class D implements C {
-
+        public D() throws Exception {
+            throw new Exception();
+        }
         @Override
         public void a() {
             StringBuilder sb = new StringBuilder();
@@ -41,6 +43,13 @@ public class Ts {
     }
 
     static class E {
+        void dos(){
+            try {
+                D d = new D();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -51,9 +60,116 @@ public class Ts {
 //        test5();
 //        new D().a();
 //            tetst6();
-        testNo();
+//        testNo();
 //        testVolatile();
+        long l = System.currentTimeMillis();
+        testf1();
+        println("1111----"+String.valueOf(System.currentTimeMillis()-l));
+        long l1 = System.currentTimeMillis();
+        testf2();
+        println("222-----"+String.valueOf(System.currentTimeMillis()-l1));
+
     }
+
+
+
+    public static void println(Object o){
+        System.out.println(o.toString());
+    }
+
+    static int f(int n)
+
+    {
+
+        if(n<=1)
+
+        {
+
+            return 1;
+
+        }
+
+        return  f(n-1) + f(n-2);
+
+    }
+    static int count = 43;
+
+   static void testf1()
+
+    {
+
+        int result;
+
+        int i;
+
+        for(i=0; i < count; i++)
+
+        {
+
+            result = f(i);
+
+            print(result);
+
+        }
+
+    }
+    static int[] arr=new int[count];
+
+    static int f2(int n)
+
+    {
+
+        int result;
+
+        if(n <= 1)
+
+        {
+
+            result = 1;
+
+        }
+
+        else
+
+        {
+
+            result = arr[n-1] + arr[n-2];
+
+        }
+
+        arr[n] = result;
+
+        return result;
+
+    }
+    static void testf2()
+
+    {
+
+        int result;
+
+        int i;
+
+        for(i=0; i < count; i++)
+
+        {
+
+            result = f2(i);
+
+            print(result);
+
+        }
+
+    }
+
+    private static void print(int result) {
+        System.out.print(result);
+    }
+
+    private static void printf(String s, int result) {
+        System.out.printf(s,result);
+    }
+
 
     private static void testNo() {
         new ReaderThread().start();

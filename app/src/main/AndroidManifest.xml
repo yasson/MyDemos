@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.ys.ts"
-          android:versionCode="1"
+          android:versionCode="2"
           android:versionName="1.0">
 
     <uses-sdk
@@ -42,6 +42,7 @@
         <activity android:name=".float_dialog.DialogKeyEventTest"/>
         <activity android:name=".fuck_money.FuckMoneyActivity"/>
         <activity android:name=".TestAct"/>
+        <activity android:name=".view_event_test.ViewEventAct"/>
 
         <service android:name=".TsService"/>
         <service android:name=".activity.CleanRoateAnimActivity$Se"/>
